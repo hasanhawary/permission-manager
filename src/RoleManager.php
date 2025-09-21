@@ -47,11 +47,10 @@ class RoleManager
     private function firstOrCreateRole(string $roleName): Role
     {
         $translateEnabled = (bool) (config('roles.translate.enabled') ?? true);
-        $file = config('roles.translate.file', 'roles');
 
         $displayName = [
-            'en' => $translateEnabled ? pm_resolveTrans($roleName, page: $file, lang: 'en') : $roleName,
-            'ar' => $translateEnabled ? pm_resolveTrans($roleName, page: $file, lang: 'ar') : $roleName,
+            'en' => $translateEnabled ? pm_resolveTrans($roleName, lang: 'en') : $roleName,
+            'ar' => $translateEnabled ? pm_resolveTrans($roleName, lang: 'ar') : $roleName,
         ];
 
         return Role::firstOrCreate(
@@ -237,7 +236,6 @@ class RoleManager
     {
         $modelName = Str::snake($model, '-');
 
-
         return Permission::firstOrCreate([
             'name' => "$operation-$modelName",
             'guard_name' => 'sanctum'
@@ -251,10 +249,10 @@ class RoleManager
                         'ar' => $model . ' (' . $operation . ')',
                     ];
                 }
-                $file = config('roles.translate.file', 'roles');
+
                 return [
-                    'en' => pm_resolveTrans($model, page: $file, lang: 'en') . ' (' . pm_resolveTrans($operation, page: $file, lang: 'en') . ')',
-                    'ar' => pm_resolveTrans($model, page: $file, lang: 'ar') . ' (' . pm_resolveTrans($operation, page: $file, lang: 'ar') . ')',
+                    'en' => pm_resolveTrans($model, lang: 'en') . ' (' . pm_resolveTrans($operation, lang: 'en') . ')',
+                    'ar' => pm_resolveTrans($model, lang: 'ar') . ' (' . pm_resolveTrans($operation, lang: 'ar') . ')',
                 ];
             })()
         ]);

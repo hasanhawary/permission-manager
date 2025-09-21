@@ -6,10 +6,12 @@ if (!function_exists('pm_resolveTrans')) {
     /**
      * Resolve translation strictly from the application's lang files.
      * Example: resources/lang/{locale}/{page}.php
-     * Falls back to original string if key is missing.
+     * Falls back to the original string if the key is missing.
      */
-    function pm_resolveTrans($trans = '', $page = 'roles', $lang = null, $snaked = true): ?string
+    function pm_resolveTrans($trans = '', $page = null, $lang = null, $snaked = true): ?string
     {
+        $page = $page ?? config('roles.translate.file', 'roles');
+
         if (empty($trans)) {
             return '---';
         }
