@@ -27,7 +27,7 @@ class PermissionManagerServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Load package translations
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'permission-manager');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'permission-manager');
 
         // Publish the config file
         $this->publishes([
@@ -41,10 +41,10 @@ class PermissionManagerServiceProvider extends ServiceProvider
 
         // Publish translations (vendor namespace)
         $this->publishes([
-            __DIR__ . '/../resources/lang' => lang_path('vendor/permission-manager'),
+            __DIR__ . '/../lang' => lang_path('vendor/permission-manager'),
         ], 'permission-manager-translations');
 
-        // Optionally publish app-level roles.php stubs into resources/lang/{locale}/roles.php
+        // Optionally publish app-level roles.php stubs into lang/{locale}/roles.php
         $this->publishes([
             __DIR__ . '/../lang/en/roles.php' => lang_path('en/roles.php'),
             __DIR__ . '/../lang/ar/roles.php' => lang_path('ar/roles.php'),
