@@ -1,5 +1,5 @@
 {
-  "name": "HasanHawary/permission-manager",
+  "name": "hasanhawary/permission-manager",
   "description": "A simple permission and role management service extracted from the app for reuse.",
   "type": "library",
   "license": "MIT",
@@ -10,15 +10,11 @@
     "spatie/laravel-permission"
   ],
   "authors": [
-    {
-      "name": "Hassan",
-      "role": "Developer"
-    }
+    { "name": "Hasan Hawary", "role": "Developer" }
   ],
   "require": {
     "php": "^8.0",
-    "illuminate/support": "^10.0 || ^11.0 || ^12.0",
-    "laravel/framework": "^10.0 || ^11.0 || ^12.0",
+    "illuminate/support": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
     "spatie/laravel-permission": "^6.0"
   },
   "autoload": {
@@ -35,6 +31,14 @@
         "HasanHawary\\PermissionManager\\PermissionManagerServiceProvider"
       ]
     }
+  },
+  "scripts": {
+    "test": "../../vendor/bin/phpunit -c phpunit.xml"
+  },
+  "homepage": "https://github.com/hasanhawary/permission-manager",
+  "support": {
+    "issues": "https://github.com/hasanhawary/permission-manager/issues",
+    "source": "https://github.com/hasanhawary/permission-manager"
   },
   "config": {
     "sort-packages": true
