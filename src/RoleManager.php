@@ -3,6 +3,7 @@
 namespace HasanHawary\PermissionManager;
 
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -51,9 +52,9 @@ class RoleManager
 
 	/**
 	 * @param string $roleName
-	 * @return Role
+	 * @return Model
 	 */
-	private function firstOrCreateRole(string $roleName): Role
+	private function firstOrCreateRole(string $roleName): Model
 	{
 		$translateEnabled = (bool)(config('roles.translate.enabled') ?? true);
 		$file = config('roles.translate.file', 'roles');
@@ -270,9 +271,9 @@ class RoleManager
 	/**
 	 * @param string $model
 	 * @param string $operation
-	 * @return Permission
+	 * @return Model
 	 */
-	private function findOrCreatePermission(string $model, string $operation): Permission
+	private function findOrCreatePermission(string $model, string $operation): Model
 	{
 		$baseModel = class_basename($model);
 		$modelName = Str::snake($baseModel, '-');
@@ -300,17 +301,12 @@ class RoleManager
 	}
 
 	/**
-	 * @param Role $role
-	 * @param Collection $models
-	 * @return Collection
-	 */
-	/**
-	 * @param Role $role
+	 * @param Model $role
 	 * @param Collection $models
 	 * @return Collection
 	 * @throws Exception
 	 */
-	private function assignModelPermissionsToRole(Role $role, Collection $models): Collection
+	private function assignModelPermissionsToRole(Model $role, Collection $models): Collection
 	{
 		// Step 1: Create all permissions from models
 		$permissions = $models->flatMap(function ($model) {
