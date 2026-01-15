@@ -24,8 +24,8 @@ return [
 	|
 	*/
 	'class_paths' => [
-		'role' => 'App\Models\Role', // replace with your model path
-		'permission' => 'App\Models\Permission', // replace with your model path
+		'role' => \App\Models\Role::class,
+		'permission' => \App\Models\Permission::class,
 	],
 	/*
 	 |--------------------------------------------------------------------------
