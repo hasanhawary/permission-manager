@@ -457,8 +457,8 @@ class RoleManager
 			if (class_exists($className)) {
 				$object = new $className();
 
-				if (property_exists($object, 'guardName')) {
-					$reflection = new \ReflectionProperty($className, 'guardName');
+				if (property_exists($object, 'guard_name')) {
+					$reflection = new \ReflectionProperty($className, 'guard_name');
 					$reflection->setAccessible(true);
 					$guardName = $reflection->getValue($object);
 
