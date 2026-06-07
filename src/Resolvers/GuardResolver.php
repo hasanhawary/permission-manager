@@ -14,6 +14,8 @@ class GuardResolver
 
 	private ModelMetadataResolver $metadata;
 
+	private ?string $overrideGuard = null;
+
 	public function __construct(PermissionManagerConfig $config, ModelDiscovery $models, ?ModelMetadataResolver $metadata = null)
 	{
 		$this->config = $config;
@@ -23,14 +25,25 @@ class GuardResolver
 
 	public function forRole(): string
 	{
-		return $this->config->defaultGuard();
+		return $this->overrideGuard ?? $this->config->defaultGuard();
 	}
 
 	public function forModel(string $modelName): string
 	{
+		if ($this->overrideGuard) {
+			return $this->overrideGuard;
+		}
+
 		$subject = $this->models->subjectFor($modelName);
 		$guardName = $this->metadata->guardName($subject);
 
 		return $guardName ?? $this->config->defaultGuard();
+	}
+
+	public function setGuard(string $guard): self
+	{
+		$this->overrideGuard = $guard;
+
+		return $this;
 	}
 }

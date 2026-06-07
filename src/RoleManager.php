@@ -100,4 +100,14 @@ class RoleManager
 
 		return app($class);
 	}
+
+    /**
+     * @param string $guard
+     * @return $this
+     */
+    public function setGuard(string $guard): self
+    {
+        $this->permissions->setGuard($guard);
+        return $this;
+    }
 }

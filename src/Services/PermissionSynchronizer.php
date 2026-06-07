@@ -101,6 +101,13 @@ class PermissionSynchronizer
 		app()[PermissionRegistrar::class]->forgetCachedPermissions();
 	}
 
+	public function setGuard(string $guard): self
+	{
+		$this->guards->setGuard($guard);
+
+		return $this;
+	}
+
 	private function ensurePermissionNamesExistForRole(array $permissionNames, Model $role): Collection
 	{
 		$permissionModel = $this->config->permissionModel();
