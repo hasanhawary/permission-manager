@@ -79,13 +79,8 @@ class ModelDiscovery
 
 		return collect(File::allFiles($modelsPath))
 			->filter(fn($file) => $file->getExtension() === 'php')
-			->map(function ($file) use ($modelsPath) {
-				$relativePath = str_replace(
-					[$modelsPath . DIRECTORY_SEPARATOR, '.php'],
-					['', ''],
-					$file->getRealPath()
-				);
-					$name = str_replace(DIRECTORY_SEPARATOR, '\\', $relativePath);
+			->map(function ($file)  {
+                    $name = $file->getBasename('.php');
 
 					return new PermissionSubject($name, $this->config->modelsNamespace() . '\\' . $name);
 				})
