@@ -19,10 +19,8 @@ class PermissionResetter
 	{
 		return [
 			$this->tableName('model_has_permissions'),
-			$this->tableName('model_has_roles'),
 			$this->tableName('role_has_permissions'),
 			$this->tableName('permissions'),
-			$this->tableName('roles'),
 		];
 	}
 
